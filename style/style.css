@@ -1,0 +1,587 @@
+:root {
+  --o: 0.5;
+  --r: -45deg;
+  --trans: 0.5s;
+}
+
+@font-face {
+  font-family: gilroy;
+  src: url(../assets/font/Gilroy-Regular.woff2);
+}
+@font-face {
+  font-family: gilroyBold;
+  src: url(../assets/font/Gilroy-Extrabold.woff2);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  --backcol: #0e0e0e;
+  --projbackcol: #171717;
+  --textcol: #d8d8d8;
+  overflow: hidden;
+  background-color: var(--backcol);
+  transition: var(--trans);
+  cursor: default;
+}
+body div.ball {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  pointer-events: none;
+  position: fixed;
+  top: var(--my);
+  left: var(--mx);
+  transform: translate(-50%, -50%);
+  -webkit-backdrop-filter: invert(80%);
+          backdrop-filter: invert(80%);
+  z-index: 1000;
+  transition-property: transform, filter, margin, -webkit-backdrop-filter;
+  transition-property: transform, backdrop-filter, filter, margin;
+  transition-property: transform, backdrop-filter, filter, margin, -webkit-backdrop-filter;
+  transition-duration: 0.2s;
+}
+body div.ball.action {
+  transform: scale(1.7);
+  filter: invert(1);
+  border: 1px rgb(92, 92, 92) solid;
+  margin-left: -15px;
+  margin-top: -15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body div.ball.action::after {
+  content: " ";
+  color: transparent;
+  width: 5px;
+  height: 5px;
+  background-color: rgb(92, 92, 92);
+  border-radius: 10px;
+}
+body .callToAction {
+  cursor: none;
+}
+body .menu {
+  width: 95vw;
+  position: fixed;
+  top: 1.5vw;
+  padding: 10px;
+  background-color: rgba(102, 100, 100, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity var(--trans);
+}
+body .menu .logo {
+  height: 50px;
+  width: 50px;
+  margin: 0px 20px;
+}
+body .menu .logo svg {
+  transition: var(--trans);
+}
+body .menu .action {
+  display: flex;
+  color: var(--textcol);
+}
+body .menu .action div {
+  width: 30px;
+  height: 30px;
+  margin: 0px 20px;
+  display: flex;
+  justify-content: center;
+  font-size: 22px;
+  font-family: gilroy;
+}
+body .menu .action div.theme {
+  background: url(../assets/moon.svg) center/cover no-repeat;
+  filter: brightness(0.1) invert(1);
+}
+body .grainy {
+  will-change: background;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  -webkit-mask-image: url(.././assets/landing/grain.png);
+          mask-image: url(.././assets/landing/grain.png);
+  -webkit-mask-size: 9%;
+          mask-size: 9%;
+  background: radial-gradient(circle at var(--mx) var(--my), rgb(167, 167, 167) 2vw, #1e1e1e 10vw);
+  mix-blend-mode: color-dodge;
+}
+body .landingPage {
+  background-color: var(--backcol);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: background var(--trans), opacity var(--trans);
+}
+body .landingPage .card {
+  position: relative;
+  perspective: 200vw;
+}
+body .landingPage .card .cardBackgroundGlow {
+  will-change: transform;
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  border-radius: 1vw;
+  background-color: #ff99f7;
+  background-image: radial-gradient(at 92% 52%, hsl(7, 93%, 68%) 0px, transparent 50%), radial-gradient(at 26% 99%, hsl(305, 95%, 67%) 0px, transparent 50%), radial-gradient(at 96% 76%, hsl(311, 90%, 79%) 0px, transparent 50%), radial-gradient(at 97% 23%, hsl(34, 93%, 63%) 0px, transparent 50%), radial-gradient(at 85% 75%, hsl(226, 61%, 73%) 0px, transparent 50%), radial-gradient(at 50% 80%, hsl(315, 77%, 77%) 0px, transparent 50%), radial-gradient(at 22% 45%, hsl(223, 81%, 64%) 0px, transparent 50%);
+  opacity: 0.3;
+  filter: blur(3.5vw);
+  -webkit-filter: blur(3.5vw);
+}
+body .landingPage .card .cardBackground {
+  z-index: 100;
+  background-color: #ff99f7;
+  background-image: radial-gradient(at 92% 52%, hsl(7, 93%, 68%) 0px, transparent 50%), radial-gradient(at 26% 99%, hsl(305, 95%, 67%) 0px, transparent 50%), radial-gradient(at 96% 76%, hsl(311, 90%, 79%) 0px, transparent 50%), radial-gradient(at 97% 23%, hsl(34, 93%, 63%) 0px, transparent 50%), radial-gradient(at 85% 75%, hsl(226, 61%, 73%) 0px, transparent 50%), radial-gradient(at 50% 80%, hsl(315, 77%, 77%) 0px, transparent 50%), radial-gradient(at 22% 45%, hsl(223, 81%, 64%) 0px, transparent 50%);
+  width: 61vw;
+  aspect-ratio: 1.68;
+  border-radius: 1vw;
+  filter: blur(0.1vw);
+  -webkit-filter: blur(0.1vw);
+}
+body .landingPage .card .cardFront {
+  will-change: transform;
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  right: 4px;
+  bottom: 4px;
+  overflow: hidden;
+  border-radius: 1vw;
+  background: var(--backcol);
+  display: flex;
+  flex-direction: column;
+  padding: 3vw;
+  color: var(--textcol);
+  transition: background var(--trans), color var(--trans);
+}
+body .landingPage .card .cardFront .front {
+  transition: opacity calc(var(--trans) / 4);
+}
+body .landingPage .card .cardFront .front h1 {
+  text-transform: uppercase;
+  font-family: gilroy;
+  font-weight: bolder;
+  font-size: 3vw;
+}
+body .landingPage .card .cardFront .front h1.name {
+  font-weight: 100;
+}
+body .landingPage .card .cardFront .front h1.title {
+  margin-bottom: 1vw;
+  font-family: gilroyBold;
+}
+body .landingPage .card .cardFront .front .subtitle {
+  font-family: gilroy;
+  font-size: 1.2vw;
+  border-left: 0.3vw solid var(--textcol);
+  padding-left: 1vw;
+  border-radius: 0.1vw;
+  width: 75%;
+}
+body .landingPage .card .cardFront .front .links {
+  font-size: 2vw;
+  width: 25vw;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3vw;
+  flex-direction: column;
+}
+body .landingPage .card .cardFront .front .links .link-item {
+  font-family: "gilroy";
+  padding-bottom: 1vw;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-bottom: 1vw;
+  position: relative;
+}
+body .landingPage .card .cardFront .front .links .link-item::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  padding-top: 2px;
+  border-radius: 4px;
+  background-color: var(--textcol);
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+body .landingPage .card .cardFront .front .links .link-item:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+body .landingPage .card .cardFront .front .texture {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 25%;
+  height: 100%;
+  background-color: transparent;
+  transition: var(--trans);
+}
+body .landingPage .card .cardFront .front .texture img {
+  transition: var(--trans);
+  height: 100%;
+  width: 100%;
+}
+body .landingPage .card .cardFront .front#foiled {
+  z-index: 1000;
+}
+body .landingPage .card .cardFront .front#foiled.flip {
+  transform: rotateY("160deg");
+  transition: var(--trans);
+}
+body .landingPage .card .cardFront .about {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  transform: rotateY(180deg);
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity calc(var(--trans) / 4);
+}
+body .landingPage .card .cardFront .about .photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  background-color: white;
+  transition: background-color var(--trans);
+}
+body .landingPage .card .cardFront .about .photo img {
+  width: 100%;
+  filter: brightness(0.9);
+  transition: filter var(--trans);
+}
+body .landingPage .card .cardFront .about .aboutContent {
+  padding: 0 3%;
+  margin: 3% 0;
+  width: 70%;
+}
+body .landingPage .card .cardFront .about .aboutContent .close {
+  position: absolute;
+  right: 3%;
+  top: 6%;
+  pointer-events: all;
+  width: 3vw;
+  filter: invert(1);
+  transition: filter var(--trans);
+}
+body .landingPage .card .cardFront .about .aboutContent .aboutTitle {
+  text-transform: uppercase;
+  font-family: gilroybold;
+  font-weight: bolder;
+  font-size: 3vw;
+}
+body .landingPage .card .cardFront .about .aboutContent .aboutDesc {
+  margin: 2vw 0;
+  font-size: 1.12vw;
+}
+body .landingPage .card .cardFront .about .aboutContent .aboutList {
+  margin-top: 2vw;
+}
+body .landingPage .card .cardFront .about .aboutContent .aboutList .aboutItem {
+  margin-top: 1vw;
+  display: flex;
+  align-items: center;
+}
+body .landingPage .card .cardFront .about .aboutContent .aboutList .aboutItem .aboutBadge {
+  width: 2vw;
+  height: 2vw;
+  background-color: var(--backcol);
+  margin-right: 1vw;
+  border-radius: 1vw;
+}
+body .landingPage .card .cardFront .about .aboutContent .aboutList .aboutItem .aboutBadge img {
+  width: 100%;
+  filter: invert(1);
+  transition: filter var(--trans);
+}
+body .landingPage .card .cardFront .about .aboutContent .aboutList .aboutItem p {
+  font-family: gilroy;
+  font-size: 1.2vw;
+}
+body .landingPage .card .cardFront .about .aboutContent .aboutList .aboutItem a {
+  font-family: gilroy;
+  font-size: 1.2vw;
+  pointer-events: all;
+  color: var(--textcol);
+}
+body .landingPage .holo {
+  will-change: background;
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(50% 123.47% at 50% 50%, #00FF94 0%, #FF00C7 100%), linear-gradient(121.28deg, #213100 0%, #FF0000 100%), linear-gradient(360deg, #0029FF 0%, #8FFF00 100%), linear-gradient(114.9deg, #00C6A2 0%, #6A45A8 100%), radial-gradient(100% 148.07% at 0% 0%, #FFFFFF 0%, #1DCD00 100%);
+  background-blend-mode: screen, color-dodge, overlay, difference, normal;
+  background-size: 120vw 120vh;
+  background-position: var(--h) var(--l);
+  -webkit-mask-image: url(".././assets/landing/foil-min.png");
+          mask-image: url(".././assets/landing/foil-min.png");
+  -webkit-mask-size: 25% 100%;
+          mask-size: 25% 100%;
+  mix-blend-mode: darken;
+  filter: brightness(1) contrast(1) saturate(1);
+  opacity: var(--o);
+  pointer-events: none;
+}
+body .landingPage .cardReflection {
+  will-change: background;
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(var(--backcol), #ffffff);
+  background-size: 120vw 120vh;
+  background-position: var(--h) var(--l);
+  -webkit-mask-image: url(".././assets/landing/metal.png");
+          mask-image: url(".././assets/landing/metal.png");
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+  background-repeat: no-repeat;
+  opacity: 0.15;
+  filter: blur(50px);
+  pointer-events: none;
+}
+body .projectPage {
+  display: flex;
+  opacity: 0;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  -webkit-backdrop-filter: blur(25px) brightness(0.5);
+          backdrop-filter: blur(25px) brightness(0.5);
+  transition: var(--trans);
+  transition-property: opacity, -webkit-backdrop-filter;
+  transition-property: backdrop-filter, opacity;
+  transition-property: backdrop-filter, opacity, -webkit-backdrop-filter;
+  color: var(--textcol);
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3vw;
+  padding-top: 78px;
+  pointer-events: none;
+}
+body .projectPage .projectContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 80vh;
+  padding-top: 2vw;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+body .projectPage .projectContainer .goAcc {
+  position: absolute;
+  width: 3vw;
+  height: 3vw;
+  right: 4vw;
+  pointer-events: all;
+  filter: invert(1);
+  transition: filter var(--trans);
+}
+body .projectPage .projectContainer::-webkit-scrollbar {
+  display: none;
+}
+body .projectPage .projectContainer .projectList {
+  width: 28vw;
+}
+body .projectPage .projectContainer .projectList h1 {
+  font-size: 3vw;
+  font-family: gilroyBold;
+}
+body .projectPage .projectContainer .projectList li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  padding: 2.7vh 0;
+}
+body .projectPage .projectContainer .projectList li.projectItem {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s, transform 0.3s;
+  display: none;
+}
+body .projectPage .projectContainer .projectList li.projectItem.appear {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+body .projectPage .projectContainer .projectList li h3 {
+  font-size: 1.5vw;
+  font-family: "gilroyBold";
+}
+body .projectPage .projectContainer .projectList li h3::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  padding-top: 2px;
+  border-radius: 4px;
+  background-color: var(--textcol);
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+body .projectPage .projectContainer .projectList li h3.anim::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+body .projectPage .projectContainer .projectList li p {
+  font-size: 1.3vw;
+  font-family: "gilroy";
+}
+body .projectPage .projectContainer .projetctPrev {
+  display: none;
+}
+body .projectPage .projectContainer .projetctPrev[src] {
+  display: block;
+  border: 0px;
+  width: 60vw;
+  height: 90%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 15px 0px 0px 15px;
+  margin: 0 1vw;
+  background: url("") center/cover no-repeat;
+  margin-top: 4vw;
+}
+body .projectPage .projectDecoration {
+  margin-top: 1vw;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  opacity: 0.5;
+  font-size: 1em;
+  padding: 0 1vw;
+}
+body .projectPage .projectYear {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  height: 100%;
+  right: 2vw;
+  opacity: 0.5;
+  font-size: 1em;
+}
+
+body.light {
+  --backcol: #f0f0f0;
+  --projbackcol: #eaeaea;
+  --textcol: #3d3d3d;
+  background-color: var(--backcol);
+}
+body.light .menu .action div.theme {
+  filter: brightness(2.5);
+  background: url(../assets/sun.svg) center/cover no-repeat;
+}
+body.light .close {
+  filter: invert(0) !important;
+}
+body.light .landingPage .card .cardFront .texture img {
+  filter: invert(1);
+}
+body.light .landingPage .card .cardFront .aboutBadge img {
+  filter: invert(0) !important;
+}
+body.light .landingPage .card .cardFront .photo {
+  background-color: var(--backcol) !important;
+}
+body.light .landingPage .card .cardFront .photo img {
+  filter: brightness(1) !important;
+}
+body.light .landingPage .holo {
+  mix-blend-mode: lighten;
+  filter: brightness(0.9) contrast(1) saturate(1);
+}
+body.light .landingPage .cardReflection {
+  background: radial-gradient(var(--backcol), #000000);
+  opacity: 0.15;
+}
+body.light .projectPage {
+  -webkit-backdrop-filter: blur(25px) brightness(1);
+          backdrop-filter: blur(25px) brightness(1);
+}
+body.light .projectPage .goAcc {
+  filter: invert(0) !important;
+}
+
+@media (min-width: 1440px) {
+  .projectPage .projectDecoration {
+    font-size: 1.7em !important;
+  }
+  .projectPage .projectYear {
+    font-size: 1.7em !important;
+  }
+}
+@media (max-width: 900px) {
+  .projetctPrev {
+    display: none !important;
+  }
+  .projectContainer .goAcc {
+    width: 7vw !important;
+  }
+  .projectPage .projectList {
+    width: 100% !important;
+    padding: 5%;
+    padding-top: 0px;
+  }
+  .projectPage .projectList h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 7vw !important;
+  }
+  .projectPage .projectList li {
+    padding: 2.7vh 0px;
+  }
+  .projectPage .projectList li h3 {
+    font-size: 3.5vw !important;
+  }
+  .projectPage .projectList li p {
+    font-size: 2.5vw !important;
+  }
+  .projectPage .projetctPrev {
+    display: none;
+  }
+}
+@media screen and (max-aspect-ratio: 1/1) {
+  .cardBackground {
+    width: 90vw !important;
+  }
+  h1 {
+    font-size: 3vh !important;
+  }
+  .subtitle {
+    font-family: gilroy;
+    font-weight: unset !important;
+    font-size: 1.5vh !important;
+  }
+  a {
+    font-size: 1.3vh !important;
+  }
+}/*# sourceMappingURL=style.css.map */
